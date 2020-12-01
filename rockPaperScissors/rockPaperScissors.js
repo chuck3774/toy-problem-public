@@ -20,6 +20,21 @@
 
 var rockPaperScissors = function (
 ) {
+  var results = [];
+  var throws = ['R', 'P', 'S'];
+  for (var k = 0; k < throws.length; k++) {
+    for (var j = 0; j < throws.length; j++) {
+      for (var i = 0; i < throws.length; i++) {
+        results.push([throws[k], throws[j], throws[i]]);
+      }
+    }
+  }
+  return results;
   // TODO: your solution here
 };
+
+
+//TESTS
+// var game1 = rockPaperScissors();
+// console.log(game1);
 
