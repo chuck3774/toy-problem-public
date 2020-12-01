@@ -25,7 +25,7 @@ var rockPaperScissors = function (
   for (var k = 0; k < throws.length; k++) {
     for (var j = 0; j < throws.length; j++) {
       for (var i = 0; i < throws.length; i++) {
-        results.push([throws[k], throws[j], throws[i]]);
+        results.push(throws[k] + throws[j] + throws[i]);
       }
     }
   }
@@ -35,6 +35,6 @@ var rockPaperScissors = function (
 
 
 //TESTS
-// var game1 = rockPaperScissors();
-// console.log(game1);
+var game1 = rockPaperScissors();
+console.log(game1);
 
