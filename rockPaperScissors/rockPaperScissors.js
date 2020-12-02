@@ -35,6 +35,6 @@ var rockPaperScissors = function (
 
 
 //TESTS
-var game1 = rockPaperScissors();
-console.log(game1);
+// var game1 = rockPaperScissors();
+// console.log(game1);
 
