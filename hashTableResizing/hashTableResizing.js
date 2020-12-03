@@ -54,10 +54,11 @@ var makeHashTable = function() {
 
   result.retrieve = function(key
 ) {
-  if (!key) {
-    return undefined;
-  }
+
    let index = getIndexBelowMaxForKey(key);
+   if (storage[index].key === undefined) {
+     return undefined;
+   }
 
    return storage[index].key;
     // TODO: implement `retrieve`
