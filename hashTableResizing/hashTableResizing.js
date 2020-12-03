@@ -25,21 +25,62 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
+
+  result.insert = function(key, value
 ) {
+   var index = getIndexBelowMaxForKey(key);
+   if(storage[index]) {
+     storage[index].key = value;
+     size++
+   }
+   if (!storage[index]) {
+     storage[index] = {key: value};
+     size++
+   }
+
+   if (size > storageLimit * .75) {
+     oldStorage = storage;
+     storage = [];
+     storageLimit = storageLimit * 2;
+     for (var i = 0; i < oldStorage.length; i++) {
+       for (var key in oldStorage[i]) {
+         this.insert(oldStorage[i].key);
+       }
+     }
+   }
+
     // TODO: implement `insert`
   };
 
-  result.retrieve = function(/*...*/ 
+  result.retrieve = function(key
 ) {
+   let index = getIndexBelowMaxForKey(key);
+   return storage[index].key;
     // TODO: implement `retrieve`
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(key
 ) {
+  let index = getIndexBelowMaxForKey(key);
+   delete storage[index].key;
+
+   if (size < storageLimit * .25) {
+    oldStorage = storage;
+    storage = [];
+    storageLimit = storageLimit / 2;
+    for (var i = 0; i < oldStorage.length; i++) {
+      for (var key in oldStorage[i]) {
+        this.insert(oldStorage[i].key);
+      }
+    }
+  }
     // TODO: implement `remove`
   };
 
   return result;
 };
+
+// var hashbrown = makeHashTable();
+// console.log(hashbrown);
+// hashbrown.insert('jerry', 'garcia');
+
