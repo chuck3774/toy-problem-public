@@ -28,7 +28,7 @@
       currentLength++;
       if (!minValue.length) {
         minValue.push(value);
-      } else if (value < minValue[minValue.length - 1]) {
+      } else if (value <= minValue[minValue.length - 1]) {
            minValue.push(value);
       }
     };
@@ -62,4 +62,5 @@
   example.push(3);
    example.push(2);
    example.push(2);
+   example.pop();
    console.log(example.min()); //2
