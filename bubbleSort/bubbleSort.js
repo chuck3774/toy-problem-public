@@ -32,7 +32,43 @@
 
 // Feel free to add helper functions if needed.
 
+//Time complexity - Quadratic
+
+
+var isSortedTest = function (array) {
+  let isTrue = 0;
+  for (var j = 0; j < array.length - 1; j ++) {
+  if (array[j] < array[j + 1]) {
+    isTrue++
+  }
+  }
+  if (isTrue === array.length - 1) {
+    return true;
+  }
+  return false;
+}
 
 var bubbleSort = function(array) {
+  var currentArray = array;
+
+  var bubbleComparer = function (currentArray) {
+    for (var i = 0; i < array.length; i++) {
+       if (currentArray[i] > currentArray[i + 1]) {
+         currentIndexOldValue = currentArray[i];
+         currentArray[i] = currentArray[i + 1];
+         currentArray[i + 1] = currentIndexOldValue;
+       }
+    }
+    if (isSortedTest(currentArray)) {
+      return currentArray;
+    } else {
+      return bubbleComparer(currentArray);
+    }
+  }
+
+  return bubbleComparer(currentArray);
+
   // Your code here.
 };
+//TEST
+// console.log(bubbleSort([4, 2, 1, 3]));
