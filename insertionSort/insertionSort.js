@@ -47,18 +47,18 @@ var testingTransform = function(array) {
 
 var insertionSort = function(array
 ) {
-  sortedArray = array.slice();
-  for (var i = 1; i < sortedArray.length; i ++) {
-    for (var j = 0; j < sortedArray.length; j ++) {
-      if (sortedArray[i].value < sortedArray[j].value && i > j) {
-        moveValue = sortedArray[i];
-        sortedArray.splice(i, 1);
-        sortedArray.splice(j, 0, moveValue);
+
+  for (var i = 1; i < array.length; i ++) {
+    for (var j = 0; j < array.length; j ++) {
+      if (array[i].value < array[j].value && i > j) {
+        moveValue = array[i];
+        array.splice(i, 1);
+        array.splice(j, 0, moveValue);
       }
     }
   }
   // Your code goes here. Feel free to add helper functions if needed.
-  return sortedArray;
+  return array;
 };
 
 //TEST
