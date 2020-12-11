@@ -32,7 +32,14 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+   var copyDeck = deck.slice();
+  for (var i = 0; i < deck.length; i ++) {
+    let randomIndex = Math.floor(Math.random() * (51 - i));
+    let card = deck[randomIndex];
+    deck.splice(randomIndex, 1);
+    copyDeck.splice(i, 1, card);
+  }
+  return copyDeck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +57,10 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+// var deck = orderedDeck();
+// var readyDeck = shuffleDeck(deck);
+// console.log(readyDeck);
+// console.log(readyDeck.length);
+
+
