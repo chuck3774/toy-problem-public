@@ -104,25 +104,26 @@ var mergeSort = function(array) {
     currentIndex = [array[i]];
     splitArray.push(currentIndex);
   }
-
+ //[ [ 3, 4, 4, 7 ], [ 1, 2, 9 ] ]
   var merge = function(arr) {
     let sortedArray = [];
     for (let j = 0; j < arr.length; j += 2) {
-         let currentArray = arr[j].concat(arr[j + 1]);
-        let newArray = [];
-      for (let k = 1; k < currentArray.length; k ++) {
-        for (let p = 0; p < currentArray.length; p ++) {
-          if (currentArray[k] < currentArray[p]) {
-            newArray.push(currentArray[k]);
-            newArray.push(currentArray[p]);
-          } else {
-            newArray.push(currentArray[p]);
-            newArray.push(currentArray[k]);
-          }
+         if (arr[j + 1] !== undefined) {var currentArray = arr[j].concat(arr[j + 1]);} else {
+           var currentArray = arr[j];//[3,4,4,7,1,2,9]
+
+         }
+
+      for (let k = 0; k < currentArray.length; k ++) {
+        for (let p = k + 1; p < currentArray.length; p ++) {
+          if (currentArray[p] < currentArray[k]) {
+           let oldVal = currentArray[p];
+           currentArray.splice(p, 1);
+           currentArray.splice(k, 0, oldVal);
         }
       }
+    }
+      sortedArray.push(currentArray);
 
-      sortedArray.push(newArray);
 
     }
     if (sortedArray.length > 1) {
@@ -131,9 +132,10 @@ var mergeSort = function(array) {
       return sortedArray;
     }
   }
-  return merge(splitArray);
+  var finalArray = merge(splitArray);
+  return finalArray[0];
 };
 
 
-var test = [4,7,4,3,9,1,2];
-console.log(mergeSort(test));
+// var test = [4,7,4,3,9,1,2];
+// console.log(mergeSort(test));
