@@ -32,14 +32,18 @@
  */
 
 var shuffleDeck = function(deck) {
-   var copyDeck = deck.slice();
-  for (var i = 0; i < deck.length; i ++) {
-    let randomIndex = Math.floor(Math.random() * (51 - i));
-    let card = deck[randomIndex];
-    deck.splice(randomIndex, 1);
-    copyDeck.splice(i, 1, card);
+  	// for 1000 turns
+	// switch the values of two random cards
+	for (var i = 0; i < 1000; i++)
+	{
+		var location1 = Math.floor((Math.random() * deck.length));
+		var location2 = Math.floor((Math.random() * deck.length));
+		var tmp = deck[location1];
+
+		deck[location1] = deck[location2];
+		deck[location2] = tmp;
   }
-  return copyDeck;
+  return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -61,6 +65,6 @@ var orderedDeck = function() {
 // var deck = orderedDeck();
 // var readyDeck = shuffleDeck(deck);
 // console.log(readyDeck);
-// console.log(readyDeck.length);
+
 
 
