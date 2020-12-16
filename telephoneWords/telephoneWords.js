@@ -40,7 +40,42 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
-
+//input string of numbers, output array of all number combos
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var phoneDigitsToLetters = {
+    0: '0',
+    1: '1',
+    2: 'ABC',
+    3: 'DEF',
+    4: 'GHI',
+    5: 'JKL',
+    6: 'MNO',
+    7: 'PQRS',
+    8: 'TUV',
+    9: 'WXYZ'
+  };
+
+  var resultCombinations = [];
+
+  if (digitString.length === 1) {
+    for (var i = 0; i < phoneDigitsToLetters[digitString].length; i ++) {
+      resultCombinations.push(phoneDigitsToLetters[digitString][i]);
+    }
+    return resultCombinations;
+  }
+
+  let firstNum = digitString[0];
+  let remainingNums = digitString.slice(1);
+
+  for (let combination of telephoneWords(remainingNums)) {
+    for (var j = 0; j < phoneDigitsToLetters[firstNum].length; j ++) {
+
+      let newCombo = phoneDigitsToLetters[firstNum][j] + combination;
+      resultCombinations.push(newCombo);
+    }
+  }
+  return resultCombinations;
 };
+
+// var test = telephoneWords('10');
+// console.log(test);

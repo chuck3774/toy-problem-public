@@ -28,5 +28,7 @@ var allAnagrams = function(string) {
 
 };
 
-var anagrams = allAnagrams('abc');
+
+
+var anagrams = allAnagrams('debitcard');
 console.log(anagrams);
