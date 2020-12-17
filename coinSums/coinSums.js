@@ -25,7 +25,41 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  var counter = 0;
 
+  var changeMaker = function (num) {
+      if (num === total) {
+        counter++;
+        return;
+      }
+      for (var i = 0; i < coins.length; i ++) {
+
+        if (num < total) {
+
+            changeMaker(num + coins[i])
+
+          }
+
+        if (num > total) {
+          break;
+        }
+      }
+
+
+  }
+  for (var j = 0; j < coins.length; j ++) {
+    if (coins[j] > total) {
+      break;
+    } else {
+      changeMaker(coins[j]);
+    }
+  }
+  return counter;
 };
+
+var test = makeChange(5);
+console.log(test);
+
 
 
