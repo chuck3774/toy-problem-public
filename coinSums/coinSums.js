@@ -25,7 +25,7 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-  if (total = 0) {
+  if (total === 0) {
     return 1;
   }
   var coins = [1, 2, 5, 10, 20, 50, 100, 200];
@@ -60,8 +60,8 @@ var makeChange = function(total) {
   return counter;
 };
 
-// var test = makeChange(9);
-// console.log(test);
+var test = makeChange(5);
+console.log(test);
 
 
 
