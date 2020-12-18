@@ -28,22 +28,26 @@ var makeChange = function(total) {
   var coins = [1, 2, 5, 10, 20, 50, 100, 200];
   var counter = 0;
 
-  var changeMaker = function (num) {
+  var changeMaker = function (num, justAddedCoin, coin) {
+
       if (num === total) {
         counter++;
         return;
       }
+      if (num > total) {
+        return;
+      }
       for (var i = 0; i < coins.length; i ++) {
 
-        if (num < total) {
+           if(coin > coins[i] || justAddedCoin > coins[i]) {
+             continue;
+           } else {
 
-            changeMaker(num + coins[i])
+             changeMaker(num + coins[i], coins[i], coin);
+           }
 
-          }
 
-        if (num > total) {
-          break;
-        }
+
       }
 
 
@@ -52,14 +56,14 @@ var makeChange = function(total) {
     if (coins[j] > total) {
       break;
     } else {
-      changeMaker(coins[j]);
+      changeMaker(coins[j], 0, coins[j]);
     }
   }
   return counter;
 };
 
-var test = makeChange(5);
-console.log(test);
+// var test = makeChange(9);
+// console.log(test);
 
 
 
