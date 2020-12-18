@@ -60,8 +60,8 @@ var makeChange = function(total) {
   return counter;
 };
 
-var test = makeChange(5);
-console.log(test);
+// var test = makeChange(5);
+// console.log(test);
 
 
 
