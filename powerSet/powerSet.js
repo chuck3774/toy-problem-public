@@ -18,30 +18,49 @@
  */
 
 var powerSet = function(str) {
+  var uniqueStr;
+
+  for (var k = 0; k < str.length; k ++) {
+    if (k === 0) {
+      uniqueStr = str[k];
+    } else {
+      let isDuplicate = false;
+      for (let p = 0; p < uniqueStr.length; p ++) {
+        if (uniqueStr[p] === str[k]) {
+          isDuplicate = true;
+          break;
+        }
+      }
+      if (!isDuplicate) {
+        uniqueStr = uniqueStr + str[k];
+      }
+    }
+  };
+
   var set = [''];
 
-  var subsetFinder = (string) => {
+  var subsetFinder = function(string) {
 
       set.push(string);
 
-    for (var i = 0; i < str.length; i ++) {
+    for (var i = 0; i < uniqueStr.length; i ++) {
       var tempString = string;
-       if(str.indexOf(tempString[tempString.length - 1]) >= i) {
+       if(uniqueStr.indexOf(tempString[tempString.length - 1]) >= i) {
          continue;
        } else {
-          subsetFinder(tempString + str[i]);
+          subsetFinder(tempString + uniqueStr[i]);
        }
 
     }
 
-  }
-  for (var j = 0; j < str.length; j ++) {
-    subsetFinder(str[j]);
+  };
+  for (var j = 0; j < uniqueStr.length; j ++) {
+    subsetFinder(uniqueStr[j]);
   }
 
   return set;
 };
 
-var test = powerSet('jump');
-console.log(test);
+// var test = powerSet('bbbbbaaaaa');
+// console.log(test);
 
