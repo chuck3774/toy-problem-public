@@ -35,7 +35,7 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+Tree.prototype.DFSelect = function(filter, depth) {
   let nodeValues = [];
   let currentVal = this.value;
   let children = this.children;
