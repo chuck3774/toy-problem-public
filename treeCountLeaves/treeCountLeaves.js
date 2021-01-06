@@ -38,7 +38,16 @@ var Tree = function(value) {
 };
 
 Tree.prototype.countLeaves = function () {
-  // TODO: implement me!
+  var count = 0;
+  if(this.children[0] === undefined) {
+    count++
+  } else {
+    for (let i = 0; i < this.children.length; i ++) {
+      count += this.children[i].countLeaves();
+    }
+  }
+
+  return count;
 };
 
 /**
@@ -94,3 +103,16 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+//TEST
+
+var root = new Tree();
+ console.log(root.countLeaves()); // 1
+ root.addChild(new Tree());
+console.log(root.countLeaves());
+root.addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].children[0].addChild(new Tree());
+console.log(root.countLeaves());
