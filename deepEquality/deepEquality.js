@@ -12,4 +12,21 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  let equals = true;
+  for (var key in apple) {
+    if (typeof apple[key] === 'number') {
+      console.log('we made it!');
+       if (apple[key] !== orange[key]) {
+         equals = false;
+       }
+       } else {
+        equals = deepEquals(apple[key], orange[key]);
+    }
+  }
+  return equals;
 };
+
+
+//TEST
+// console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}})); // true
+// console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}})); // false
