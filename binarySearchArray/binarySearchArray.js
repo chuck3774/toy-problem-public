@@ -22,8 +22,14 @@ var binarySearch = function (array, target) {
     let mid = Math.floor((index + length)/2);
 
     if (target > array[mid]) {
+      if (length === 0) {
+        return null;
+      }
       index = mid + 1;
     } else if (target < array[mid]) {
+      if (length === 0) {
+        return null;
+      }
       length = mid -1;
     } else {
      return mid;
@@ -33,6 +39,6 @@ var binarySearch = function (array, target) {
 };
 
 //TEST
-var index = binarySearch([1, 2, 3, 4, 5], 4);
+var index = binarySearch([1, 2, 3, 5], 4);
 console.log(index);
 

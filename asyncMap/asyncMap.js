@@ -39,4 +39,6 @@
 
 
 var asyncMap = function(tasks, callback) {
+  Promise.all(tasks.map(task =>  new Promise(task)))
+  .then(callback);
 };
