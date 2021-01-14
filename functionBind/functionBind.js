@@ -23,10 +23,29 @@
  *
 */
 
-var bind = function(
+var bind = function(func, context
 ) {
   // TODO: Your code here
+  let previousArgs = [].slice.call(arguments, 2);
+  return function() {
+      let currentArgs = [].slice.call(arguments);
+      let combinedArgs = [].concat(previousArgs, currentArgs);
+
+      return func.apply(context, combinedArgs);
+    }
 };
+
+//TEST
+// var alice = {
+//   name: 'alice',
+//   shout: function(){
+//   console.log(this.name);
+//   }
+//   }
+//   var boundShout = bind(alice.shout, alice);
+//   console.log(boundShout()); // alerts 'alice'
+//   boundShout = bind(alice.shout, {name: 'bob'});
+//  console.log(boundShout()); // alerts 'bob'
 
 /*
  * Function.prototype.bind:
@@ -53,7 +72,15 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
+Function.prototype.bind = function(context
 ) {
   // TODO: Your code here
+  let func = this;
+  let previousArgs = [].slice.call(arguments, 1);
+
+  return function(){
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+    return func.apply(context, combinedArgs);
+  };
 };
