@@ -39,17 +39,83 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function(start, end, step=1) {
+  this.range = {start: start, end: end, step: step};
 };
 
 Range.prototype.size = function () {
+  if(!this.range.start) {
+    return null;
+  }
+  if(this.range.step >= 0) {
+    if (this.range.end) {
+      return ((this.range.end - this.range.start) + 2)/this.range.step;
+    } else {
+      return 1;
+    }
+  } else {
+    if (this.range.end) {
+      return ((this.range.start - this.range.end) + 2)/Math.abs(this.range.step);
+    } else {
+      return 1;
+    }
+  }
 };
 
 Range.prototype.each = function (callback) {
+if (!this.range.start) {
+  return null;
+}
+if (!this.range.end) {
+  callback(this.range.start);
+  return;
+}
+if (this.range.start < this.range.end) {
+  for (let i = this.range.start; i <= this.range.end; i += this.range.step) {
+    callback(i);
+  }
+} else {
+  let absoluteStep = Math.abs(this.range.step);
+  for (let i = this.range.end; i <= this.range.start; i += absoluteStep) {
+    callback(i);
+}
+}
 };
 
 Range.prototype.includes = function (val) {
+  if (!this.range.start) {
+    return null;
+  }
+  if (!this.range.end) {
+   return this.range.start === val;
+  }
+  if (this.range.start < this.range.end) {
+    let match = false;
+    for (let i = this.range.start; i < this.range.end; i += this.range.step) {
+     if(i === val) {
+       match = true;
+     }
+    }
+    return match;
+  } else {
+    let negativeMatch = false;
+    let absoluteStep = Math.abs(this.range.step);
+    for (let i = this.range.end; i < this.range.start; i += absoluteStep) {
+     if (i === val) {
+       negativeMatch = true;
+     }
+  }
+  return negativeMatch;
+}
 };
 
-var range = new Range(1);
+var evenNumbers = new Range(null,2,-2); // A range with the even numbers 2, 4, 6, and 8.
+evenNumbers.each(function(val){
+console.log(val+"!");
+});
+console.log("Who do we appreciate!?");
+
+console.log(evenNumbers.size()); //should be 4
+console.log(evenNumbers.includes(2));  //should be true
+console.log(evenNumbers.includes(3)); //should be false
 
