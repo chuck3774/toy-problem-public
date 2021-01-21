@@ -99,7 +99,7 @@ BinaryHeap.prototype.insert = function (value) {
   this._heap.splice(binary(this._heap, value, 0), 0, value);
   return this._heap;
 }
-}
+
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here

@@ -31,18 +31,40 @@
  */
 
 var LRUCache = function (limit) {
+  this._size = 0;
+  this.storage = {};
+  this.memory = new List();
 };
 
 var LRUCacheItem = function (val, key) {
+  this.val = val;
+  this.key = key;
 };
 
 LRUCache.prototype.size = function () {
+  return this._size;
 };
 
 LRUCache.prototype.get = function (key) {
+  const node = this.storage[key];
+  if (node !== null) {
+    this.memory.moveToFront(node);
+    return node.val.val;
+  }
+  return null;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  const item = new LRUCacheItem(val, key);
+  const node = this.memory.unshift(item);
+  this._size += 1;
+  if (this._size > this.limit) {
+    const del = this.memory.pop();
+    this.storage[del.key] = null;
+    this._size -= 1;
+  }
+
+  this.storage[key] = node;
 };
 
 
