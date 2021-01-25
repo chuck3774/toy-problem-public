@@ -28,6 +28,44 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  var DIGIT_VALUES = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+  if (typeof romanNumeral !== 'string') {
+    return null;
+  }
+  var numConverted = 0;
+  var subtract = 0;
+
+  if (romanNumeral.length === 1) {
+    return DIGIT_VALUES[romanNumeral[0]];
+  }
+
+  for (let i = 0; i < romanNumeral.length; i ++ ) {
+    if (i < romanNumeral.length - 1) {
+      if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]] ) {
+        subtract += DIGIT_VALUES[romanNumeral[i]];
+      } else {
+        numConverted += DIGIT_VALUES[romanNumeral[i]];
+      }
+
+    } else {
+      numConverted += DIGIT_VALUES[romanNumeral[i]];
+    }
+
+  }
+
+return numConverted - subtract;
 
 };
+
+//TEST
+
+// console.log(translateRomanNumeral("IV"));
+// console.log(translateRomanNumeral("LX"));
