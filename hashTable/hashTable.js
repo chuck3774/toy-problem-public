@@ -20,19 +20,31 @@ var makeHashTable = function() {
   var result = {};
   var storage = [];
   var storageLimit = 1000;
-  result.insert = function(/*...*/ 
+  result.insert = function(key, value
 ) {
-    // TODO: implement `insert()`
+  var index = getIndexBelowMaxForKey(key);
+  if(storage[index]) {
+    storage[index].key = value;
+  }
+  if (!storage[index]) {
+    storage[index] = {key: value};
+  }
   };
 
-  result.retrieve = function(/*...*/ 
+  result.retrieve = function(key
 ) {
-    // TODO: implement `retrieve()`
+  let index = getIndexBelowMaxForKey(key);
+  if (storage[index].key === undefined) {
+    return undefined;
+  }
+
+  return storage[index].key;
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(key
 ) {
-    // TODO: implement `remove()`
+  let index = getIndexBelowMaxForKey(key);
+  delete storage[index].key;
   };
 
   return result;
