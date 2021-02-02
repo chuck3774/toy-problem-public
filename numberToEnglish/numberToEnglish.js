@@ -1,4 +1,3 @@
-var converter = require('number-to-words');
 /**
 * Extend the Number prototype with a new method called `toEnglish`.
 * It should return the number as a string using English words.
@@ -56,8 +55,36 @@ var numbersToPlace = {
 
 Number.prototype.toEnglish = function (num) {
   // return my value as english words
-  converter.toWords(num);
+  var word = num.toString();
+  var wordArray = [];
+  count = 0;
+
+  for (var i = word.length - 1; i >= 0; i --) {
+    count++;
+    if (count === 1) {
+      wordArray.push(numbersToWords[word[i]]);
+    }
+    if (count === 2) {
+      wordArray.push('-')
+      wordArray.push(numbersToWords[word[i] + '0'])
+    }
+    if (count === 3) {
+      wordArray.push(' ')
+      wordArray.push(numbersToPlace['100'])
+      wordArray.push(' ')
+      wordArray.push(numbersToWords[word[i]]);
+    }
+  }
+
+  let stringified = '';
+  for (let p = wordArray.length - 1; p >= 0; p --) {
+      stringified += wordArray[p];
+  }
+
+  return stringified;
 };
 
 //TEST
+var wordz = new Number;
+console.log(wordz.toEnglish(237));
 
