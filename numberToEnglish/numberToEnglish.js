@@ -1,3 +1,4 @@
+var converter = require('number-to-words');
 /**
 * Extend the Number prototype with a new method called `toEnglish`.
 * It should return the number as a string using English words.
@@ -53,6 +54,10 @@ var numbersToPlace = {
   1000000000000000000: 'quintillion',
 };
 
-Number.prototype.toEnglish = function () {
+Number.prototype.toEnglish = function (num) {
   // return my value as english words
+  converter.toWords(num);
 };
+
+//TEST
+
