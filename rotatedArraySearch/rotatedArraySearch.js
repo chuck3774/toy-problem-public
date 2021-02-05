@@ -16,6 +16,10 @@
  */
 
 var rotatedArraySearch = function (rotated, target) {
-  // Your code here:
+  if (rotated.indexOf(target) !== -1) {
+    return rotated.indexOf(target)
+  } else {
+    return null;
+  }
 };
 
