@@ -38,9 +38,24 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
-Tree.prototype.getClosestCommonAncestor = function(/*...*/
+Tree.prototype.getClosestCommonAncestor = function(path1, path2
 ) {
-  // TODO: implement me!
+  var path1 = this.getAncestorPath(n1)
+  var path2 = this.getAncestorPath(n2)
+  if (!path1 || !path2) return null
+  ancestor = null;
+
+  // Get the shorter length
+  var shorterLength = Math.min(path1.length, path2.length)
+
+  // Compare each index and get the furthest common index
+  for (var i = 0; i < shorterLength; i++) {
+    if (path1[i] === path2[i]) {
+      ancestor = path[i]
+    }
+  }
+
+  return ancestor;
 };
 
 /**
@@ -51,9 +66,24 @@ Tree.prototype.getClosestCommonAncestor = function(/*...*/
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
-Tree.prototype.getAncestorPath = function(/*...*/
+Tree.prototype.getAncestorPath = function(target, path = []
 ) {
-  // TODO: implement me!
+  if (this === target) {
+    // Deal with the fact that we have a solution
+    // Add to our path
+    path.unshift(this);
+    return path;
+  } else {
+    // Iterate over possible decisions (in this case, children)
+    for (var i = 0; i < this.children.length; i++) {
+      // Make the decision and check if its valid recursively
+      if (this.children[i].getAncestorPath(target, path)) {
+        path.unshift(this);
+        return path;
+      }
+    }
+  }
+  return null;
 };
 
 /**
