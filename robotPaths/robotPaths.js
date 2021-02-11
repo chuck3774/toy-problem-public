@@ -29,42 +29,30 @@ var makeBoard = function(n) {
 };
 
 var robotPaths = function(n) {
-  // the amount of paths
+
   var paths = 0;
-  // make the board
   var board = makeBoard(n);
-  // recursive fn to find all possible robot paths
   var findPaths = function (i, j) {
-    // if a path has been found add it to the paths count
     if (i === n - 1 && j === n - 1) {
       paths++;
       return;
     }
-    // if it has run out of bounds, return
     if (i < 0 || i >= n || j < 0 || j >= n) {
       return;
     }
-    // if the spot has already been visited then return
     if (board.hasBeenVisited(i, j)) {
       return;
     } else {
-      // toggle a piece on the board
       board.togglePiece(i, j);
-      // go right
       findPaths(i, j + 1);
-      // go down
       findPaths(i + 1, j);
-      // go left
       findPaths(i, j - 1);
-      // go up
       findPaths(i - 1, j);
-      // toggle the piece back
       board.togglePiece(i, j);
     }
   };
 
   findPaths(0, 0);
-  // return the number of paths
   return paths;
 };
 
