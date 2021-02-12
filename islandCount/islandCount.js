@@ -14,7 +14,7 @@ function countIslands(mapStr) {
       j >= 0 &&
       i < mapStr.length &&
       j < mapStr[i].length &&
-      mapStr[i][j] === '1'
+      mapStr[i][j] === '.'
     ) {
       mapStr[i][j] = '0';
       islandSearch(i + 1, j);
@@ -26,7 +26,7 @@ function countIslands(mapStr) {
 
   for (let i = 0; i < mapStr.length; i += 1) {
     for (let j = 0; j < mapStr[i].length; j += 1) {
-      if (mapStr[i][j] === '1') {
+      if (mapStr[i][j] === '.') {
         counter += 1;
         islandSearch(i, j);
       }
