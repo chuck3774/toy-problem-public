@@ -12,11 +12,11 @@ function countIslands(mapStr) {
     if (
       i >= 0 &&
       j >= 0 &&
-      i < grid.length &&
-      j < grid[i].length &&
-      grid[i][j] === '1'
+      i < mapStr.length &&
+      j < mapStr[i].length &&
+      mapStr[i][j] === '1'
     ) {
-      grid[i][j] = '0';
+      mapStr[i][j] = '0';
       islandSearch(i + 1, j);
       islandSearch(i, j + 1);
       islandSearch(i - 1, j);
@@ -24,9 +24,9 @@ function countIslands(mapStr) {
     }
   };
 
-  for (let i = 0; i < grid.length; i += 1) {
-    for (let j = 0; j < grid[i].length; j += 1) {
-      if (grid[i][j] === '1') {
+  for (let i = 0; i < mapStr.length; i += 1) {
+    for (let j = 0; j < mapStr[i].length; j += 1) {
+      if (mapStr[i][j] === '1') {
         counter += 1;
         islandSearch(i, j);
       }
