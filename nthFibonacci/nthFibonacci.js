@@ -21,8 +21,29 @@
  */
 
 var nthFibonacci = function (n) {
-  // TODO: implement me!
+  let count = 1;
+  let array = [0, 1];
+
+  let Fibonacci = () => {
+    if (count === n) {
+      return array.pop();
+    }
+
+    let newVal = array[array.length - 1] + array[array.length - 2];
+    array.push(newVal);
+    count++;
+    return Fibonacci();
+
+  }
+ return Fibonacci();
 };
+
+//TEST
+
+// console.log(nthFibonacci(2));
+// console.log(nthFibonacci(3));
+// console.log(nthFibonacci(4));
+// console.log(nthFibonacci(5));
 
 
 
