@@ -25,6 +25,12 @@ var nthFibonacci = function (n) {
   let array = [0, 1];
 
   let Fibonacci = () => {
+    if (n === 0) {
+      return 0;
+    }
+    if (n === 1) {
+      return 1;
+    }
     if (count === n) {
       return array.pop();
     }
