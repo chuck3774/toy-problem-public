@@ -14,7 +14,28 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+  if (string === '') {
+    return null;
+  }
+  let arrString = string.split('');
+  let currRun = '';
+  let indexes = [];
+  let longRun = [0, 0];
+  arrString.map((letter, i) => {
+    if (letter === currRun) {
+       indexes[1] = i;
+       if (indexes[1] - indexes[0] > longRun[1] - longRun[0]) {
+         longRun[0] = indexes[0];
+         longRun[1] = indexes[1];
+       }
+    } else {
+      currRun = letter;
+      indexes[0] = i;
+      indexes[1] = i;
+
+    }
+  })
+  return longRun;
 };
 
 // If you need a random string generator, use this!
@@ -29,3 +50,12 @@ var randomString = function (len) {
 
   return text;
 };
+
+
+//TEST
+
+
+// console.log(longestRun("abbbcc")) // [1, 3]
+// console.log(longestRun("aabbc"))  // [0, 1]
+// console.log(longestRun("abcd"))   // [0, 0]
+// console.log(longestRun(""))
