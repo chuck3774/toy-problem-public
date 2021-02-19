@@ -9,6 +9,13 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
+  let isPrime = true;
+  for (var i = 2; i < n; i ++) {
+    if (n % i === 0) {
+      isPrime = false;
+    }
+  }
+  return isPrime;
   // TODO: return true if n is prime, false otherwise
 };
 
@@ -20,5 +27,11 @@ var primeTester = function(n) {
 
 var primeSieve = function (start, end) {
 };
+
+//TEST
+
+// console.log(primeTester(7));
+// console.log(primeTester(13));
+// console.log(primeTester(22));
 
 
